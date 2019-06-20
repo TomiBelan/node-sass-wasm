@@ -1,0 +1,22 @@
+{
+  "name": "node-sass-wasm",
+  "version": "0.1.0",
+  "description": "WebAssembly rewrite of node-sass",
+  "main": "lib/index.js",
+  "files": [
+    "lib/*.js",
+    "dist/*.js",
+    "dist/*.wasm"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^6.1.4",
+    "prettier": "^1.18.2",
+    "read-yaml": "^1.1.0",
+    "sass-spec": "^3.5.4-1"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5"
+  }
+}

@@ -1,0 +1,6 @@
+dist
+libsass
+node_modules
+test
+*.tgz
+package-lock.json
