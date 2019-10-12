@@ -34,8 +34,13 @@ EMCC_OPTIONS = \
 
 BINDING_SOURCES = dist/entrypoint.o dist/functions.o dist/importers.o libsass/lib/libsass.a
 
+# Build webassembly version with JS loader glue code
 dist/binding.js: $(BINDING_SOURCES) src/workaround8806.js Makefile
-	emcc -O2 -o $@ $(BINDING_SOURCES) $(EMCC_OPTIONS)
+	emcc -O2 -o $@ $(BINDING_SOURCES) -s WASM=1 $(EMCC_OPTIONS)
+
+# Build a more compatible and portable pure asmjs version
+dist/binding.asm.js: $(BINDING_SOURCES) src/workaround8806.js Makefile
+	emcc -O2 -o $@ $(BINDING_SOURCES) -s WASM=0 $(EMCC_OPTIONS)
 
 dist/version.js: dist/binding.js
 	node -e "console.log('exports.libsass = \"' + require('./dist/binding').sassVersion() + '\"')" > $@
