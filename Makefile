@@ -4,7 +4,7 @@
 # license that can be found in the LICENSE file or at
 # https://opensource.org/licenses/MIT.
 
-all: dist/binding.js dist/binding.wasm dist/version.js
+all: dist/binding.js dist/version.js
 
 LIBSASS_VERSION = 3.5.5
 # It also works with 3.6.0 but sass-spec isn't compatible with 3.6.0 yet.
@@ -27,7 +27,7 @@ EMCC_OPTIONS = \
 
 BINDING_SOURCES = dist/entrypoint.o dist/functions.o dist/importers.o libsass/lib/libsass.a
 
-dist/binding.js dist/binding.wasm: $(BINDING_SOURCES) src/workaround8806.js Makefile
+dist/binding.js: $(BINDING_SOURCES) src/workaround8806.js Makefile
 	emcc -O2 -o $@ $(BINDING_SOURCES) $(EMCC_OPTIONS)
 
 dist/version.js: dist/binding.js dist/binding.wasm
