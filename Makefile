@@ -11,7 +11,7 @@ LIBSASS_VERSION ?= 3.5.5
 
 LIBSASS_DIRECTORY ?= libsass
 
-CXXFLAGS = -Wall -O2 -std=c++17 -I $(LIBSASS_DIRECTORY)/include $(EXTRA_CXXFLAGS)
+CXXFLAGS = -Wall -O3 -std=c++17 -I $(LIBSASS_DIRECTORY)/include $(EXTRA_CXXFLAGS)
 
 EMCC_OPTIONS = \
 	--js-opts 2 \
@@ -38,11 +38,11 @@ BINDING_SOURCES = dist/entrypoint.o dist/functions.o dist/importers.o $(LIBSASS_
 
 # Build webassembly version with JS loader glue code
 dist/binding.js: $(BINDING_SOURCES) src/workaround8806.js Makefile
-	emcc -O2 -o $@ $(BINDING_SOURCES) -s WASM=1 $(EMCC_OPTIONS)
+	emcc -O3 -o $@ $(BINDING_SOURCES) -s WASM=1 $(EMCC_OPTIONS)
 
 # Build a more compatible and portable pure asmjs version
 dist/binding.asm.js: $(BINDING_SOURCES) src/workaround8806.js Makefile
-	emcc -O2 -o $@ $(BINDING_SOURCES) -s WASM=0 $(EMCC_OPTIONS)
+	emcc -O3 -o $@ $(BINDING_SOURCES) -s WASM=0 $(EMCC_OPTIONS)
 
 dist/version.js: dist/binding.js
 	node -e "console.log('exports.libsass = \"' + require('./dist/binding').sassVersion() + '\"')" > $@
