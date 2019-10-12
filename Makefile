@@ -6,7 +6,7 @@
 
 all: dist/binding.js dist/version.js
 
-LIBSASS_VERSION = 3.5.5
+LIBSASS_VERSION ?= 3.5.5
 # It also works with 3.6.0 but sass-spec isn't compatible with 3.6.0 yet.
 
 CXXFLAGS = -Wall -O2 -std=c++17 -I libsass/include $(EXTRA_CXXFLAGS)
