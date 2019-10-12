@@ -37,8 +37,8 @@ BINDING_SOURCES = dist/entrypoint.o dist/functions.o dist/importers.o libsass/li
 dist/binding.js: $(BINDING_SOURCES) src/workaround8806.js Makefile
 	emcc -O2 -o $@ $(BINDING_SOURCES) $(EMCC_OPTIONS)
 
-dist/version.js: dist/binding.js dist/binding.wasm
-	node -e 'console.log("exports.libsass = %j;", require("./dist/binding").sassVersion())' > $@
+dist/version.js: dist/binding.js
+	node -e "console.log('exports.libsass = \"' + require('./dist/binding').sassVersion() + '\"')" > $@
 
 dist/%.o: src/%.cpp | dist libsass
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
