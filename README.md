@@ -75,10 +75,6 @@ yarn add node-sass@git+https://github.com/TomiBelan/node-sass-wasm#built/master
 - node-sass-wasm doesn't provide a CLI binary. I think that belongs in a
   separate package anyway.
 
-## Contributing
-
-Sorry, I'm not accepting pull requests at the moment.
-
 ## Status
 
 The project is feature-complete and implements the full API of node-sass 4.12.0.
