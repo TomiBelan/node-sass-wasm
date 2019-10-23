@@ -63,9 +63,9 @@ $(LIBSASS_DIRECTORY):
 dist:
 	mkdir dist
 
-clean: $(LIBSASS_DIRECTORY)
+clean:
 	-rm -rf dist
-	$(MAKE) -C $(LIBSASS_DIRECTORY) clean
+	[ -d $(LIBSASS_DIRECTORY) ] && $(MAKE) -C $(LIBSASS_DIRECTORY) clean
 
 veryclean:
 	-rm -rf dist libsass
