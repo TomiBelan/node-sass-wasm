@@ -47,14 +47,14 @@ dist/binding.asm.js: $(BINDING_SOURCES) src/workaround8806.js Makefile
 dist/version.js: dist/binding.js
 	node -e "console.log('exports.libsass = \"' + require('./dist/binding').sassVersion() + '\"')" > $@
 
-dist/%.o: src/%.cpp | dist libsass
+dist/%.o: src/%.cpp | dist $(LIBSASS_DIRECTORY)
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 dist/entrypoint.o: src/functions.h src/importers.h
 dist/functions.o: src/functions.h
 dist/importers.o: src/importers.h
 
-$(LIBSASS_DIRECTORY)/lib/libsass.a: libsass
+$(LIBSASS_DIRECTORY)/lib/libsass.a: $(LIBSASS_DIRECTORY)
 	$(MAKE) -C $(LIBSASS_DIRECTORY) lib/libsass.a
 
 $(LIBSASS_DIRECTORY):
@@ -68,7 +68,7 @@ clean:
 	[ -d $(LIBSASS_DIRECTORY) ] && $(MAKE) -C $(LIBSASS_DIRECTORY) clean
 
 veryclean:
-	-rm -rf dist libsass
+	-rm -rf dist $(LIBSASS_DIRECTORY)
 
 .PHONY: all clean veryclean
 .DELETE_ON_ERROR:
