@@ -41,7 +41,7 @@ dist/binding.asm.js: $(BINDING_SOURCES) src/workaround8806.js Makefile
 	emcc -O3 -o $@ $(BINDING_SOURCES) -s WASM=0 $(EMCC_OPTIONS)
 
 dist/version.js: dist/binding.js
-	node -e "console.log('exports.libsass = \"' + require('./dist/binding').sassVersion() + '\"')" > $@
+	node -e "console.log('exports.libsass = %j;', require('./dist/binding').sassVersion())" > $@
 
 dist/%.o: src/%.cpp | dist $(LIBSASS_DIRECTORY)
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
