@@ -19,14 +19,10 @@ EMCC_OPTIONS = \
 	-Wno-almost-asm \
 	-s ENVIRONMENT=node \
 	-s NODERAWFS=1 \
-	-s ASSERTIONS=0 \
-	-s STANDALONE_WASM=0 \
-	-s WASM_OBJECT_FILES=0 \
 	-s DISABLE_EXCEPTION_CATCHING=0 \
 	-s NODEJS_CATCH_EXIT=0 \
 	-s WASM_ASYNC_COMPILATION=0 \
 	-s ALLOW_MEMORY_GROWTH=1 \
-	-s MALLOC=dlmalloc \
 	--bind \
 	--js-library src/workaround8806.js
 # `--js-library workaround8806.js` must be AFTER `--bind` to override it!
